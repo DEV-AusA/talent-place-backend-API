@@ -8,7 +8,7 @@
     "allowSyntheticDefaultImports": true,
     "target": "ES2016",
     "sourceMap": true,
-    "rootDir": "./src",   
+    "rootDir": "./src",
     "outDir": "./dist",
     "baseUrl": "./",
     "incremental": true,
@@ -19,9 +19,7 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
-
     "resolveJsonModule": true, //permite importar archivos json
-    "types": ["multer"] //integrar el tipo de dato multer para la carga de archivos
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]
