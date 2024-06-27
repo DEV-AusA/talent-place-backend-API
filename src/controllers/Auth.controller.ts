@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import catchAsync from "../utils/catchAsync";
+import catchAsync from "../utils/catch-async.util";
 
 const postAuth2FaSetup = async (req: Request, res: Response) => {
     // const Setup = await metodoService;
