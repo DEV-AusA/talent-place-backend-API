@@ -2,8 +2,6 @@ import server from "./server";
 import "reflect-metadata";
 import { AppDataSource } from "./config/typeorm.config";
 import { preloadUsersData } from "./helpers/Preload.Data";
-// import { preloadAppointmentsData, preloadCredentialsData, preloadUsersData } from "./helpers/Preload.Data";
-// import * as pgvector from 'pgvector/pg';
 
 async function serverOn() {
   try {
