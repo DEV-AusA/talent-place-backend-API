@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import authServices from "../services/auth.services";
+import authServices from "../services/Auth.Service";
 import catchAsync from "../utils/catch-async.util";
 
 const postAuth2FaSetup = async (req: Request, res: Response) => {
@@ -9,9 +9,9 @@ const postAuth2FaSetup = async (req: Request, res: Response) => {
 }
 
 const postAuth2FaVerify = async (req: Request, res: Response) => {
-    const { secret, encoding, token } = req.body;
-    const verifyQrCode = await authServices.auth2FaVerifyService({ secret, encoding, token });
-    res.status(200).json({message: "Verificacion en proceso", verifyQrCode});
+    const { userId, token } = req.body;
+    const verifyQrCode = await authServices.auth2FaVerifyService(userId, token);
+    res.status(200).json({message: "Proceso de la verificacion", verifyQrCode});
 }
 
 export default {

@@ -1,6 +1,6 @@
-interface QrCodeDataDto {
+interface IQrCodeData {
     secret: string;
     encoding: any;
     token: string;
 }
-export default QrCodeDataDto;
+export default IQrCodeData;
