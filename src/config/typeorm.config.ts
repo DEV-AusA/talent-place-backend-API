@@ -1,5 +1,6 @@
 import { DataSource } from "typeorm"
 import { config as dotenvConfig } from 'dotenv';
+import { Users } from "../entities/users";
 
 dotenvConfig({ path: '.env' });
 
@@ -12,8 +13,8 @@ export const AppDataSource = new DataSource({
     database: process.env.DB_NAME,
     dropSchema: true, // <= esta propiedad borra toda la DB si esta activado
     synchronize: true,
-    logging: false, // ["error"], <= solo muestre errores de la DB
-    entities: [],
+    logging: true, // ["error"], <= solo muestre errores de la DB
+    entities: [Users],
     subscribers: [],
     migrations: [],
 })
