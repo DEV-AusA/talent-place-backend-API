@@ -10,8 +10,8 @@ const postAuth2FaSetup = async (req: Request, res: Response) => {
 
 const postAuth2FaVerify = async (req: Request, res: Response) => {
     const { userId, token } = req.body;
-    const verifyQrCode = await authServices.auth2FaVerifyService(userId, token);
-    res.status(200).json({message: "Proceso de la verificacion", verifyQrCode});
+    const verifyStatus = await authServices.auth2FaVerifyService(userId, token);
+    res.status(200).json({message: "Verificacion realizada con exito", verifyStatus});
 }
 
 export default {
