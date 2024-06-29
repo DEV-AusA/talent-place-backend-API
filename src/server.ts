@@ -1,5 +1,5 @@
 import express, { NextFunction, Request, Response } from "express"
-import router from "./routes/principal.router"
+import router from "./routes/PrincipalRouter"
 // import IError from "./interfaces/IError";
 import cors from "cors"
 
