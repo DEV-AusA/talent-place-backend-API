@@ -1,4 +1,4 @@
-import IUser from "../interfaces/IUser.interface";
+import IUser from "../interfaces/IUser.Interface";
 
 //users preload
 export const preloadUsers: IUser[] = [

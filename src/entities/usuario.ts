@@ -1,13 +1,13 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import Proyecto from "./proyecto";
-import Aplicaciones from "./aplicaciones";
-import Pagos from "./pagos";
-import Comentarios from "./comentarios";
+import Proyecto from "./Proyecto";
+import Aplicaciones from "./Aplicacion";
+import Pagos from "./Pago";
+import Comentarios from "./Comentario";
 
 @Entity({
     name: "usuarios"
 })
-export default class Usuarios {
+export default class Usuario {
 
     @PrimaryGeneratedColumn()
     id: number;
@@ -29,10 +29,10 @@ export default class Usuarios {
     tipo: string;
 
     @Column({ name: "2fa_enabled", default: false })
-    autentificacionDe2FaEnabled: boolean;
+    autenticacion2FAHabilitada: boolean;
 
     @Column({ name: "2fa_secret", nullable: true })
-    autenticacion2FaSecret: string;
+    autenticacion2FASecreto: string;
 
     @OneToMany(() => Proyecto, (projecto) => projecto.empresaId)
     projecto: Proyecto[];

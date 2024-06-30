@@ -1,7 +1,7 @@
 
-import { AppDataSource } from "../config/typeorm.config";
-import Usuarios from "../entities/usuario";
-import { preloadUsers } from "./Users.Data";
+import { AppDataSource } from "../config/Typeorm.config";
+import Usuarios from "../entities/Usuario";
+import { preloadUsers } from "./UsersData.Helper";
 
 const UserRepository = AppDataSource.getRepository(Usuarios);
 

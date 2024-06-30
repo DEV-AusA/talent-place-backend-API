@@ -1,8 +1,8 @@
 import * as speakeasy from "speakeasy";
 import * as qrcode from "qrcode";
-import { AppDataSource } from "../config/typeorm.config";
-import Usuarios from "../entities/usuario";
-import IQrCodeData from "../interfaces/IQrCodeData.interface";
+import { AppDataSource } from "../config/Typeorm.config";
+import Usuarios from "../entities/Usuario";
+import IQrCodeData from "../interfaces/IQrCodeData.Interface";
 
 const UserRepository = AppDataSource.getRepository(Usuarios);
 
@@ -45,7 +45,7 @@ const auth2FaVerifyService = async (userId: number, token: string) => {
     const user: Partial<Usuarios> = await findUserById(userId);
 
     const dataVerified: IQrCodeData = {
-        secret: user.autenticacion2FaSecret,
+        secret: user.autenticacion2FASecreto,
         encoding: "ascii",
         token,
     }
@@ -62,10 +62,10 @@ const updateUserSecret2Fa = async (userId: Partial<Usuarios>, secret: string) =>
 
     try {
 
-        if(!userId.autentificacionDe2FaEnabled) {
+        if(!userId.autenticacion2FAHabilitada) {
             await UserRepository.update(userId, {
-                autentificacionDe2FaEnabled: true,
-                autenticacion2FaSecret: secret
+                autenticacion2FAHabilitada: true,
+                autenticacion2FASecreto: secret
             });            
         }
     } catch (error) {

@@ -1,8 +1,8 @@
 import { Router } from "express";
-import userRouter from './UsersRouter'
-import projectRouter from './ProjectsRouter'
-import appsRouter from './AppsRouter'
-import authRouter from "./AuthRouter";
+import userRouter from './Users.Router'
+import projectRouter from './Projects.Router'
+import appsRouter from './Apps.Router'
+import authRouter from "./Auth.Router";
 
 const principalRouter: Router = Router();
 
