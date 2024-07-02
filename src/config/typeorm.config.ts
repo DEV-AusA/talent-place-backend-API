@@ -3,7 +3,7 @@ import { config as dotenvConfig } from 'dotenv';
 import Aplicaciones from "../entities/Aplicacion";
 import Comentarios from "../entities/Comentario";
 import Pagos from "../entities/Pago";
-import { Proyecto } from "../entities/Proyecto";
+import { Proyecto } from "../entities/proyecto";
 import { Usuario } from "../entities/usuario";
 
 dotenvConfig({ path: '.env' });
