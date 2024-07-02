@@ -1,8 +1,8 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import Aplicaciones from "./Aplicacion";
-import Pagos from "./Pago";
-import Comentarios from "./Comentario";
 import { Proyecto } from "./Proyecto";
+import Aplicacion from "./Aplicacion";
+import Pago from "./Pago";
+import Comentario from "./Comentario";
 
 @Entity({
     name: "usuarios"
@@ -37,15 +37,15 @@ export class Usuario {
     @OneToMany(() => Proyecto, (projecto) => projecto.empresaId)
     projecto: Proyecto[];
 
-    @OneToMany(() => Aplicaciones, (aplicacion) => aplicacion.juniorId)
-    aplicacion: Aplicaciones[];
+    @OneToMany(() => Aplicacion, (aplicacion) => aplicacion.juniorId)
+    aplicacion: Aplicacion[];
 
-    @OneToMany(() => Pagos, (pagos) => pagos.empresaId)
-    PagoRealizado: Pagos[];
+    @OneToMany(() => Pago, (pagos) => pagos.empresaId)
+    PagoRealizado: Pago[];
 
-    @OneToMany(() => Pagos, (pagos) => pagos.juniorId)
-    ComentarioRecivido: Pagos[];
+    @OneToMany(() => Pago, (pagos) => pagos.juniorId)
+    ComentarioRecivido: Pago[];
 
-    @OneToMany(() => Comentarios, (comentarios) => comentarios.usuarioId)
-    comentarios: Comentarios[];
+    @OneToMany(() => Comentario, (comentarios) => comentarios.usuarioId)
+    comentarios: Comentario[];
 }

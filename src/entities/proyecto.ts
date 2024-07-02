@@ -1,8 +1,8 @@
 import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToMany } from "typeorm";
-import Aplicaciones from "./Aplicacion";
-import Pagos from "./Pago";
-import Comentarios from "./Comentario";
 import { Usuario } from "./Usuario";
+import Aplicacion from "./Aplicacion";
+import Pago from "./Pago";
+import Comentario from "./Comentario";
 
 @Entity({
     name: "proyectos"
@@ -33,12 +33,12 @@ export class Proyecto {
     @JoinColumn({ name: "empresa_id" })
     empresa: Usuario;
 
-    @OneToMany(() => Aplicaciones, (aplicaciones) => aplicaciones.proyectoId)
-    aplicaciones: Aplicaciones[];
+    @OneToMany(() => Aplicacion, (aplicaciones) => aplicaciones.proyectoId)
+    aplicaciones: Aplicacion[];
 
-    @OneToMany(() => Pagos, (pagos) => pagos.proyectoId)
-    pagos: Pagos[];
+    @OneToMany(() => Pago, (pagos) => pagos.proyectoId)
+    pagos: Pago[];
 
-    @OneToMany(() => Comentarios, (comentarios) => comentarios.proyectoId)
-    comentarios: Comentarios[];
+    @OneToMany(() => Comentario, (comentarios) => comentarios.proyectoId)
+    comentarios: Comentario[];
 }
