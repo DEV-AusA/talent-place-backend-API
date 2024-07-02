@@ -1,7 +1,7 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import Aplicaciones from "./aplicacion";
+import Aplicaciones from "./apliplicacion";
 import Pagos from "./pago";
-import Comentarios from "./comentario";
+import Comentarios from "./cocomentario";
 import { Proyecto } from "./proyecto";
 
 @Entity({
