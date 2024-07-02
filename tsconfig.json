@@ -26,6 +26,6 @@
     "typeRoots": ["./@types"], // custom types
     "resolveJsonModule": true, //permite importar archivos json
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "tests/**/*.ts"],
   "exclude": ["node_modules"]
 }
