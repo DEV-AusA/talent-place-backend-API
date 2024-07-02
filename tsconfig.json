@@ -13,16 +13,17 @@
     "sourceMap": true,
     "rootDir": "./src",
     "outDir": "./dist",
-    "baseUrl": ".",
+    "baseUrl": "./",
     "incremental": false,
     "skipLibCheck": true,
     "strict": true,                                      /* Enable all strict type-checking options. */
     "strictNullChecks": false,
     "noImplicitAny": false,
     "strictBindCallApply": false,
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
 
+    "importHelpers": true, /* Allow importing helper functions from tslib once per project, instead of including them per-file. */
     "typeRoots": ["./@types"], // custom types
     "resolveJsonModule": true, //permite importar archivos json
   },
