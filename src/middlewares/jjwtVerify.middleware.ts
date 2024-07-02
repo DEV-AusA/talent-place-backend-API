@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import jwtService from "jsonwebtoken";
-import CustomJwtPayload from '../interfaces/IPayloadCustom.Interface';
+import CustomJwtPayload from '../interfaces/iiPayloadCustom.iinterface';
 import catchAsync from '../utils/CatchAsync.Util';
 
 const jwtVerify = async (
