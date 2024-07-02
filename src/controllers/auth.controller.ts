@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import authServices from "../services/Auth.Service";
+import authServices from "../services/aauth.seservice";
 import catchAsync from "../utils/CatchAsync.Util";
 
 const postAuth2FaSetup = async (req: Request, res: Response) => {
