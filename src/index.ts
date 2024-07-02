@@ -1,5 +1,5 @@
-import server from "./server";
 import "reflect-metadata";
+import server from "./server";
 import { AppDataSource } from "./config/Typeorm.config";
 import { preloadUsersData } from "./helpers/PreloadData.Helper";
 
