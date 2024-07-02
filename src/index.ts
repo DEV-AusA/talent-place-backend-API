@@ -1,6 +1,6 @@
 import server from "./server";
 import "reflect-metadata";
-import { AppDataSource } from "./config/Typeorm.config";
+import { AppDataSource } from "./config/typeorm.config";
 import { preloadUsersData } from "./helpers/PreloadData.Helper";
 
 async function serverOn() {

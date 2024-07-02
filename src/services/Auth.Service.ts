@@ -1,17 +1,17 @@
 import * as speakeasy from "speakeasy";
 import * as qrcode from "qrcode";
-import { AppDataSource } from "../config/Typeorm.config";
-import Usuarios from "../entities/Usuario";
+import { AppDataSource } from "../config/typeorm.config";
 import IQrCodeData from "../interfaces/IQrCodeData.Interface";
+import { Usuario } from "../entities/usuario";
 
-const UserRepository = AppDataSource.getRepository(Usuarios);
+const UserRepository = AppDataSource.getRepository(Usuario);
 
 const auth2FaSetupService = async (userId: number) => {
     const secret = speakeasy.generateSecret({
         name: process.env.SPEAKEASY_NAME
     })
     try {
-        const user:Partial<Usuarios> = await findUserById(userId);
+        const user:Partial<Usuario> = await findUserById(userId);
 
         // actualizo el secret
         await updateUserSecret2Fa(user , secret.ascii);
@@ -42,7 +42,7 @@ const findUserById = async (id: number) => {
 
 const auth2FaVerifyService = async (userId: number, token: string) => {    
 
-    const user: Partial<Usuarios> = await findUserById(userId);
+    const user: Partial<Usuario> = await findUserById(userId);
 
     const dataVerified: IQrCodeData = {
         secret: user.autenticacion2FASecreto,
@@ -58,7 +58,7 @@ const auth2FaVerifyService = async (userId: number, token: string) => {
     }
 }
 
-const updateUserSecret2Fa = async (userId: Partial<Usuarios>, secret: string) => {
+const updateUserSecret2Fa = async (userId: Partial<Usuario>, secret: string) => {
 
     try {
 
