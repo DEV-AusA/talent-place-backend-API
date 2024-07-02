@@ -1,5 +1,5 @@
 import { Router } from "express";
-import AuthController from "../controllers/auth.pepe";
+import AuthController from "../controllers/auth.controller";
 import JwtVerifyMiddleware from "../middlewares/JwtVerify.Middleware";
 
 const authRouter: Router = Router();
