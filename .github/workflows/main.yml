@@ -23,12 +23,6 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run build
-        run: npm run build
-
       # Listar archivos en el directorio src/entities para verificar que existan
       - name: List files in src/entities
         run: ls -la ./src/entities
