@@ -1,6 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import Aplicaciones from "./aplicacion";
-import Pagos from "./papago";
+import Pagos from "./pago";
 import Comentarios from "./comentario";
 import { Proyecto } from "./proyecto";
 
