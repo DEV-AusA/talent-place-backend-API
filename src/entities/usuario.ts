@@ -1,13 +1,13 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Proyecto } from "./Proyecto";
-import Aplicacion from "./Aplicacion";
-import Pago from "./Pago";
-import Comentario from "./Comentario";
+import Proyecto from "./Proyecto";
+import Aplicaciones from "./Aplicacion";
+import Pagos from "./Pago";
+import Comentarios from "./Comentario";
 
 @Entity({
     name: "usuarios"
 })
-export class Usuario {
+export default class Usuario {
 
     @PrimaryGeneratedColumn()
     id: number;
@@ -37,15 +37,15 @@ export class Usuario {
     @OneToMany(() => Proyecto, (projecto) => projecto.empresaId)
     projecto: Proyecto[];
 
-    @OneToMany(() => Aplicacion, (aplicacion) => aplicacion.juniorId)
-    aplicacion: Aplicacion[];
+    @OneToMany(() => Aplicaciones, (aplicacion) => aplicacion.juniorId)
+    aplicacion: Aplicaciones[];
 
-    @OneToMany(() => Pago, (pagos) => pagos.empresaId)
-    PagoRealizado: Pago[];
+    @OneToMany(() => Pagos, (pagos) => pagos.empresaId)
+    PagoRealizado: Pagos[];
 
-    @OneToMany(() => Pago, (pagos) => pagos.juniorId)
-    ComentarioRecivido: Pago[];
+    @OneToMany(() => Pagos, (pagos) => pagos.juniorId)
+    ComentarioRecivido: Pagos[];
 
-    @OneToMany(() => Comentario, (comentarios) => comentarios.usuarioId)
-    comentarios: Comentario[];
+    @OneToMany(() => Comentarios, (comentarios) => comentarios.usuarioId)
+    comentarios: Comentarios[];
 }

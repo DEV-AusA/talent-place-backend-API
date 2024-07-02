@@ -1,6 +1,6 @@
 import * as speakeasy from "speakeasy";
 import * as qrcode from "qrcode";
-import { AppDataSource } from "../config/typeorm.config";
+import { AppDataSource } from "../config/Typeorm.config";
 import Usuarios from "../entities/Usuario";
 import IQrCodeData from "../interfaces/IQrCodeData.Interface";
 

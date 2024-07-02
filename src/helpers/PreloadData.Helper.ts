@@ -1,9 +1,9 @@
 
-import { AppDataSource } from "../config/typeorm.config";
-import { Usuario } from "../entities/Usuario";
+import { AppDataSource } from "../config/Typeorm.config";
+import Usuarios from "../entities/Usuario";
 import { preloadUsers } from "./UsersData.Helper";
 
-const UserRepository = AppDataSource.getRepository(Usuario);
+const UserRepository = AppDataSource.getRepository(Usuarios);
 
 export const preloadUsersData = async () => {
     await AppDataSource.manager.transaction(async (transactionalEntityManager) => {
