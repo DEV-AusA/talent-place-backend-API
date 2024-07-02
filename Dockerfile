@@ -1,23 +1,18 @@
+# Usa una imagen base de Node.js
+FROM node:14
 
-# image 1 dependencias
-FROM node:18-alpine3.15 AS deps
-RUN apk add --no-cache libc6-compat
+# Establece el directorio de trabajo dentro del contenedor
 WORKDIR /app
+
+# Copia los archivos de tu aplicación
 COPY package.json package-lock.json ./
-RUN npm install --frozen-lockfile
+COPY dist ./dist
 
-# image 2 builder
-FROM node:18-alpine3.15 AS builder
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
-RUN npm run build
+# Instala las dependencias de producción
+RUN npm install --only=production
 
-# image 3 production server-on
-FROM node:18-alpine3.15 AS runner
-WORKDIR /usr/src/app
-COPY package.json package-lock.json ./
-RUN npm install --prod
-COPY --from=builder /app ./
+# Expone el puerto en el contenedor (ajusta según tu configuración)
+EXPOSE 3000
 
-CMD [ "npm","start" ]
+# Define el comando para iniciar tu aplicación
+CMD ["node", "dist/index.js"]
