@@ -22,7 +22,7 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
 
-    "moduleResolution": "node",
+    "moduleResolution": "Node16",
     "typeRoots": ["./@types"], // custom types
     "resolveJsonModule": true, //permite importar archivos json
   },
