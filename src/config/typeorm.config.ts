@@ -1,8 +1,8 @@
 import { DataSource } from "typeorm"
 import { config as dotenvConfig } from 'dotenv';
-import Aplicaciones from "../entities/Aplicacion";
-import Comentarios from "../entities/Comentario";
-import Pagos from "../entities/Pago";
+import Aplicaciones from "../entities/aplicacion";
+import Comentarios from "../entities/comentario";
+import Pagos from "../entities/papago";
 import { Proyecto } from "../entities/proyecto";
 import { Usuario } from "../entities/usuario";
 
