@@ -20,7 +20,6 @@
     "strictNullChecks": false,
     "noImplicitAny": false,
     "strictBindCallApply": false,
-    "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
 
     "typeRoots": ["./@types"], // custom types
