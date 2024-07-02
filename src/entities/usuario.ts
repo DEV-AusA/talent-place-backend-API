@@ -7,7 +7,7 @@ import Comentarios from "./Comentario";
 @Entity({
     name: "usuarios"
 })
-export default class Usuario {
+export class Usuario {
 
     @PrimaryGeneratedColumn()
     id: number;
