@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import authServices from "../services/auth.service";
-import catchAsync from "../utils/ccatchAsync.uutil";
+import catchAsync from "../utils/catchAsync.util";
 
 const postAuth2FaSetup = async (req: Request, res: Response) => {
     const { userId } = req.body;
