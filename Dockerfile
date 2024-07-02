@@ -10,7 +10,8 @@ RUN npm install --frozen-lockfile
 FROM node:18-alpine3.15 AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
-COPY . .
+COPY ./src ./src
+COPY tsconfig.json ./
 RUN npm run build
 
 # image 3 production server-on
