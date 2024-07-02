@@ -1,8 +1,8 @@
 import express, { NextFunction, Request, Response } from "express"
-import router from "./routes/Principal.Router"
+import router from "./routes/pprincipal.rorouter"
 import cors from "cors"
 import IError from "./interfaces/iError.interface";
-import { loggerGlobal } from "./middlewares/lologger.middleware";
+import { loggerGlobal } from "./middlewares/logger.middleware";
 
 const server = express();
 server.use(cors());
