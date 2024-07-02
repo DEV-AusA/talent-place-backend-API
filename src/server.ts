@@ -1,7 +1,7 @@
 import express, { NextFunction, Request, Response } from "express"
 import router from "./routes/Principal.Router"
 import cors from "cors"
-import IError from "./interfaces/iError.Interface";
+import IError from "./interfaces/iError.interface";
 import { loggerGlobal } from "./middlewares/logger.Middleware";
 
 const server = express();
