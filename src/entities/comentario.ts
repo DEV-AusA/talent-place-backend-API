@@ -1,22 +1,28 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, Column, Entity, PrimaryColumn } from "typeorm";
+import { ulid } from "ulid";
 
 @Entity({
     name: "comentarios"
 })
 export default class Comentario {
 
-    @PrimaryGeneratedColumn()
-    id: number;
+    @PrimaryColumn()
+    id: string;
 
     @Column({ name: "proyecto_id" })
-    proyectoId: number;
+    proyectoId: string;
 
     @Column({ name: "usuario_id" })
-    usuarioId: number;
+    usuarioId: string;
 
     @Column()
     comentario: string;
 
     @Column()
     puntuación: number;
+
+    @BeforeInsert()
+    generateUlid() {
+      this.id = ulid();
+    }
 }
