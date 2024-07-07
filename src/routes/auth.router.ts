@@ -1,6 +1,8 @@
 import { Router } from "express";
 import JwtVerifyMiddleware from "../middlewares/jwtVerify.middleware";
 import authController from "../controllers/auth.controller";
+import rateLimit from "express-rate-limit";
+import validateRegisterMiddleware from "../middlewares/validateRegister.middleware";
 
 const authRouter: Router = Router();
 
@@ -67,7 +69,16 @@ authRouter.post("/2fa/setup", JwtVerifyMiddleware.jwtVerify , authController.pos
  *               verifyStatus: true
  */
 authRouter.post("/2fa/verify", authController.postAuth2FaVerify);
-authRouter.post("/login", authController.authLogin);
-authRouter.post("/register", authController.postUser); 
+authRouter.post("/register",
+    // rateLimit,
+    validateRegisterMiddleware.validateRegisterData,
+    authController.postUser
+);
+
+authRouter.post("/login",
+    // rateLimit,
+    validateRegisterMiddleware.validateRegisterData,
+    authController.authLogin
+);
 
 export default authRouter;
