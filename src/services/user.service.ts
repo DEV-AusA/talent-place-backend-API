@@ -3,7 +3,7 @@ import Usuario from "../entities/usuario"
 
 const userRepository = AppDataSource.getRepository(Usuario);
 
-const getUserProfilebyIdService = async (userId: number) => {
+const getUserProfileByIdService = async (userId: number) => {
     //mediante querys
     const userByQuery: Usuario = await userRepository.createQueryBuilder('usuarios')
     .select(["usuarios.id", "usuarios.nombre", "usuarios.email", "usuarios.tipo", "usuarios.autenticacion2FAHabilitada", "usuarios.updatedAt"])
@@ -24,5 +24,5 @@ const getUserProfilebyIdService = async (userId: number) => {
 }
 
 export default {
-    getUserProfilebyIdService
+    getUserProfileByIdService
 }
