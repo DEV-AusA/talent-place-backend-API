@@ -13,7 +13,7 @@ projectRouter.get("/",
 );
 
 projectRouter.get("/:id",
-    projectController.editProject,
+    projectController.editProjectById,
     jwtIdMatchVerifyMiddleware.jwtIdMatchVerify
 );
 
@@ -28,14 +28,14 @@ projectRouter.put("/:id",
     jwtVerifyMiddleware.jwtVerify,
     jwtIdMatchVerifyMiddleware.jwtIdMatchVerify,
     jwtRolVerify(['empresa']),
-    projectController.editProject
+    projectController.editProjectById
 );
 
 projectRouter.delete("/:id",
     jwtVerifyMiddleware.jwtVerify,
     jwtIdMatchVerifyMiddleware.jwtIdMatchVerify,
     jwtRolVerify(['empresa']),
-    projectController.deleteProject
+    projectController.deleteProjectById
 );
 
 export default projectRouter
