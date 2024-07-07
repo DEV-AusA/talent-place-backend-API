@@ -3,6 +3,7 @@ import JwtVerifyMiddleware from "../middlewares/jwtVerify.middleware";
 import authController from "../controllers/auth.controller";
 import rateLimit from "express-rate-limit";
 import validateRegisterMiddleware from "../middlewares/validateRegister.middleware";
+import validateLoginMiddleware from "../middlewares/validateLogin.middleware";
 
 const authRouter: Router = Router();
 
@@ -77,7 +78,7 @@ authRouter.post("/register",
 
 authRouter.post("/login",
     // rateLimit,
-    validateRegisterMiddleware.validateRegisterData,
+    validateLoginMiddleware.validateLoginData,
     authController.authLogin
 );
 
