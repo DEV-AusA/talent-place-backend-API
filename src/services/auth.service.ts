@@ -117,11 +117,6 @@ const createUser = async (nombre: string, contrasenia: string, email: string): P
       if (!email || !contrasenia) {
         throw { message: 'Correo electrónico y contraseña son obligatorios', code: 400 };
       }
-
-      // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      // if (!emailRegex.test(email)) {
-      //   throw { message: 'Formato de correo electrónico no válido', code: 400 };
-      // }
       
       const user = await userRepository.findOne({ where: { email } });
       if (!user) {
@@ -134,7 +129,7 @@ const createUser = async (nombre: string, contrasenia: string, email: string): P
       }
   
       const token = jwt.sign(
-        { userId: user.id, username: user.nombre },
+        { userId: user.id, email: user.email, tipo: user.tipo },
         process.env.JWT_SECRET,
         { expiresIn: '48h' }
       );
