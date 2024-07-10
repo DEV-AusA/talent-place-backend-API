@@ -15,8 +15,8 @@ export default class Aplicacion {
     @Column({ name: "junior_id" })
     juniorId: string;
 
-    @Column()
-    estado: string;
+    @Column({default: false})
+    estado: boolean;
 
     @BeforeInsert()
     generateUlid() {
