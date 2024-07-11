@@ -26,7 +26,7 @@ usersRouter.get("/",
 usersRouter.get("/me",
     jwtVerifyMiddleware.jwtVerify,
     jwtIdMatchVerifyMiddleware.jwtIdMatchVerify,
-    jwtRolVerify(["admin", "junior"]),
+    jwtRolVerify(["admin", "junior", "empresa"]),
     userController.getUserProfile
 );
 

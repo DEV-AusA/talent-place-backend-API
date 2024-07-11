@@ -21,11 +21,14 @@ export default class Proyecto {
     @Column()
     descripcion: string;
 
+    @Column()
+    requisitos: string;
+
     @Column({ name: "empresa_id" })
     empresaId: string;
 
-    @Column({ type: "decimal", precision: 10, scale: 2 })
-    presupuesto: number;
+    // @Column({ type: "decimal", precision: 10, scale: 2 })
+    // presupuesto: number;
 
     @Column({
         type: "enum",

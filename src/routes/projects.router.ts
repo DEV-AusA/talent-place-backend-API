@@ -8,13 +8,13 @@ import jwtRolVerify from "../middlewares/jwtRolVerify.middleware";
 const projectRouter: Router = Router();
 
 projectRouter.get("/",
-    projectController.getAllProjects,
-    jwtIdMatchVerifyMiddleware.jwtIdMatchVerify
+    projectController.getAllProjects
 );
 
 projectRouter.get("/:id",
-    projectController.editProjectById,
-    jwtIdMatchVerifyMiddleware.jwtIdMatchVerify
+    jwtVerifyMiddleware.jwtVerify,
+    jwtIdMatchVerifyMiddleware.jwtIdMatchVerify,
+    projectController.editProjectById
 );
 
 //Para empresa
