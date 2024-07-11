@@ -42,11 +42,10 @@ export default class Proyecto {
     })
     estado: boolean;
 
-    @ManyToMany(() => Habilidad)
-    @JoinTable({name: "proyecto_habilidades"})
+    @ManyToMany(() => Habilidad, (habilidad) => habilidad.proyecto, { eager: true })
     habilidades: Habilidad[];
 
-    @ManyToOne(() => Categoria, (categoria) => categoria.proyecto)
+    @ManyToOne(() => Categoria, (categoria) => categoria.proyecto, { eager: true })
     categoria: Categoria;
 
     @ManyToOne(() => Usuario, (usuario) => usuario.projecto)
