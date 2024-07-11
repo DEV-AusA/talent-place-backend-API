@@ -40,9 +40,9 @@ const getProyectByIdService = async (id: string, projectId: string) =>{
 
 }
 
-const postNewProjectService = async (projectData: ProjectDto) =>{
+const postNewProjectService = async (id: string, projectData: ProjectDto) =>{
     
-    await findCompanyById(projectData.id);
+    await findCompanyById(id);
 
     try {
         //agrego categoria
@@ -55,7 +55,7 @@ const postNewProjectService = async (projectData: ProjectDto) =>{
             titulo: projectData.titulo,
             descripcion: projectData.descripcion,
             requisitos: projectData.requisitos,
-            empresaId: projectData.id,
+            empresaId: id,
             // presupuesto: 500,
             modalidad: projectData.modalidad,
             estado: true,        
@@ -64,6 +64,7 @@ const postNewProjectService = async (projectData: ProjectDto) =>{
         })
         const projectCreated = await projectRepository.save(project);
         return projectCreated;
+        
     } catch (error) {
         throw error;        
     }
@@ -75,8 +76,18 @@ const editProjectByIdService = async () =>{
 
 }
 
-const deleteProjectByIdService = async () =>{
+const deleteProjectByIdService = async (id: string, projectId: string) =>{
+    
+    const projectFinded = await getProyectByIdService(id, projectId);
 
+    try {
+        
+        await projectRepository.remove(projectFinded);        
+        return {message: `Proyecto '${projectFinded.titulo}' eliminado con exito`};
+
+    } catch (error) {
+        throw error;
+    }
 }
 
 const findCompanyById = async (id: string) => {

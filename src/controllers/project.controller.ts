@@ -16,8 +16,9 @@ const getProyectById = async (req: Request, res: Response) =>{
 }
 
 const postNewProject = async (req: Request, res: Response) =>{
+    const { id } = req.params;
     const projectData: ProjectDto = req.body;
-    const projectOk = await  projectService.postNewProjectService(projectData);
+    const projectOk = await  projectService.postNewProjectService(id, projectData);
     res.status(200).json(projectOk);
 }
 
@@ -26,7 +27,10 @@ const editProjectById = async (req: Request, res: Response) =>{
 }
 
 const deleteProjectById = async (req: Request, res: Response) =>{
-
+    const { id } = req.params;
+    const { projectId } = req.body;
+    const projectDeleted = await projectService.deleteProjectByIdService(id, projectId);
+    res.status(200).json(projectDeleted);
 }
 
 export default {

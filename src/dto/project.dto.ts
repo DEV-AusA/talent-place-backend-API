@@ -1,5 +1,4 @@
 interface ProjectDto {
-    id: string;
     empresaId: string;
     titulo: string;
     descripcion: string;
