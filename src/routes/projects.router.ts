@@ -14,7 +14,8 @@ projectRouter.get("/",
 projectRouter.get("/:id",
     jwtVerifyMiddleware.jwtVerify,
     jwtIdMatchVerifyMiddleware.jwtIdMatchVerify,
-    projectController.editProjectById
+    jwtRolVerify(['empresa', 'junior', 'admin']),
+    projectController.getProyectById
 );
 
 //Para empresa

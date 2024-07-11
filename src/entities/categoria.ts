@@ -1,4 +1,4 @@
-import { BeforeInsert, Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryColumn } from "typeorm";
+import { BeforeInsert, Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
 import { ulid } from "ulid";
 import Proyecto from "./proyecto";
 

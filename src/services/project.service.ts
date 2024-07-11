@@ -11,8 +11,8 @@ const projectRepository = AppDataSource.getRepository(Proyecto);
 const userRepository = AppDataSource.getRepository(Usuario);
 
 const getAllProjectsService = async () =>{
-    try {
-        
+
+    try {        
         const projects: Proyecto[] = await projectRepository.find();
         return projects
     } catch (error) {
@@ -20,7 +20,23 @@ const getAllProjectsService = async () =>{
     }
 }
 
-const getProyectByIdService = async () =>{
+const getProyectByIdService = async (id: string, projectId: string) =>{
+    //busco la compañia
+    await findCompanyById(id);
+    
+    try {
+        const project: Proyecto = await projectRepository.findOneBy({id: projectId});
+        
+        if (!project) throw ({
+            message: "No existe un proyecto con este id",
+            code: 404
+        })
+
+        return project;
+        
+    } catch (error) {
+        throw error;
+    }
 
 }
 

@@ -8,8 +8,11 @@ const getAllProjects = async (req: Request, res: Response) =>{
     res.status(200).json(projects);
 }
 
-const getProyectById = async (req: Request, res: Response) =>{
-
+const getProyectById = async (req: Request, res: Response) =>{    
+    const { id } = req.params;
+    const { projectId } = req.body;
+    const project = await projectService.getProyectByIdService(id, projectId)
+    res.status(200).json(project);
 }
 
 const postNewProject = async (req: Request, res: Response) =>{
