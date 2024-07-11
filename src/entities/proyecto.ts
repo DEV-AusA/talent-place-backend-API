@@ -40,7 +40,7 @@ export default class Proyecto {
     estado: boolean;
 
     @ManyToMany(() => Habilidad)
-    @JoinTable()
+    @JoinTable({name: "proyecto_habilidades"})
     habilidades: Habilidad[];
 
     @ManyToOne(() => Categoria, (categoria) => categoria.proyecto)
