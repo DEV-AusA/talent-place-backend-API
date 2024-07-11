@@ -1,9 +1,11 @@
 import { BeforeInsert, Column, Entity, PrimaryColumn } from "typeorm";
 import { ulid } from "ulid";
 
-@Entity()
+@Entity({
+    name: "habilidades"
+})
 export class Habilidad {
-    
+
   @PrimaryColumn()
   id: string;
 
