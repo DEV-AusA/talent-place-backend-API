@@ -1,5 +1,6 @@
 import { AppDataSource } from "../config/typeorm.config"
 import ProjectDto from "../dto/project.dto";
+import ProjectUpdateDto from "../dto/projectUpdate.dto";
 import Categoria from "../entities/categoria";
 import { Habilidad } from "../entities/habilidad";
 import Proyecto from "../entities/proyecto"
@@ -20,9 +21,7 @@ const getAllProjectsService = async () =>{
     }
 }
 
-const getProyectByIdService = async (id: string, projectId: string) =>{
-    //busco la compañia
-    await findCompanyById(id);
+const getProjectByIdService = async (projectId: string) =>{
     
     try {
         const project: Proyecto = await projectRepository.findOneBy({id: projectId});
@@ -48,8 +47,7 @@ const postNewProjectService = async (id: string, projectData: ProjectDto) =>{
         //agrego categoria
         const category: Categoria = await categoryService.postNewCategory(projectData.categoria);
         //agrego habilidades
-        const habilities: Habilidad[] = await habilidadService.postNweHability(projectData.habilidades);
-        console.log(habilities);        
+        const habilities: Habilidad[] = await habilidadService.postNewHability(projectData.habilidades);
         
         const project = await projectRepository.create({
             titulo: projectData.titulo,
@@ -58,7 +56,7 @@ const postNewProjectService = async (id: string, projectData: ProjectDto) =>{
             empresaId: id,
             // presupuesto: 500,
             modalidad: projectData.modalidad,
-            estado: true,        
+            estado: projectData.estado,        
             categoria: category,
             habilidades: habilities
         })
@@ -67,18 +65,38 @@ const postNewProjectService = async (id: string, projectData: ProjectDto) =>{
         
     } catch (error) {
         throw error;        
+    }    
+}
+
+const editProjectByIdService = async (id: string, projectData: ProjectUpdateDto) =>{
+
+    await findCompanyById(id);
+
+    try {
+        //agrego categoria
+        const category: Categoria = await categoryService.postNewCategory(projectData.categoria);
+        //agrego habilidades
+        const habilities = await habilidadService.postNewHability(projectData.habilidades);        
+        //primer parametro siempre el id del project a actualizar
+        const projectUpdated = await projectRepository.preload({
+            id: projectData.projectId,
+            ...projectData,
+            habilidades: habilities,
+            categoria: category,
+        });
+        await projectRepository.save(projectUpdated);
+
+        const project = await getProjectByIdService(projectData.projectId)
+        return project;
+        
+    } catch (error) {
+        throw error;
     }
-
-    
 }
 
-const editProjectByIdService = async () =>{
-
-}
-
-const deleteProjectByIdService = async (id: string, projectId: string) =>{
+const deleteProjectByIdService = async (projectId: string) =>{
     
-    const projectFinded = await getProyectByIdService(id, projectId);
+    const projectFinded = await getProjectByIdService(projectId);
 
     try {
         
@@ -106,7 +124,7 @@ const findCompanyById = async (id: string) => {
 
 export default {
     getAllProjectsService,
-    getProyectByIdService,
+    getProjectByIdService,
     postNewProjectService,
     editProjectByIdService,
     deleteProjectByIdService

@@ -3,7 +3,7 @@ import { Habilidad } from "../entities/habilidad";
 
 const habilityRepository = AppDataSource.getRepository(Habilidad);
 
-const postNweHability = async (habilities: string[]) => {
+const postNewHability = async (habilities: string[]) => {
     let habilitiesList: Habilidad[] = [];
 
     try {
@@ -48,5 +48,5 @@ const findHabilityByName = async (name: string) => {
 }
 
 export default {
-    postNweHability
+    postNewHability
 }
