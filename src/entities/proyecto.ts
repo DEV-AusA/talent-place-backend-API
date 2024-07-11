@@ -1,9 +1,11 @@
-import { Column, Entity, ManyToOne, JoinColumn, OneToMany, PrimaryColumn, BeforeInsert } from "typeorm";
+import { Column, Entity, ManyToOne, JoinColumn, OneToMany, PrimaryColumn, BeforeInsert, OneToOne, ManyToMany, JoinTable } from "typeorm";
 import Usuario from "./usuario";
 import Aplicacion from "./aplicacion";
 import Pago from "./pago";
 import Comentario from "./comentario";
 import { ulid } from "ulid";
+import Categoria from "./categoria";
+import { Habilidad } from "./habilidad";
 
 @Entity({
     name: "proyectos"
@@ -26,9 +28,23 @@ export default class Proyecto {
     presupuesto: number;
 
     @Column({
-        default: "active"
+        type: "enum",
+        enum: ["remoto", "hibrido", "presencial"],
+        default: "presencial"
     })
-    estado: string;
+    modalidad: string;
+
+    @Column({
+        default: false
+    })
+    estado: boolean;
+
+    @ManyToMany(() => Habilidad)
+    @JoinTable()
+    habilidades: Habilidad[];
+
+    @ManyToOne(() => Categoria, (categoria) => categoria.proyecto)
+    categoria: Categoria;
 
     @ManyToOne(() => Usuario, (usuario) => usuario.projecto)
     @JoinColumn({ name: "empresa_id" })
