@@ -2,6 +2,7 @@ import { AppDataSource } from "../config/typeorm.config"
 import ProjectDto from "../dto/project.dto";
 import Proyecto from "../entities/proyecto"
 import Usuario from "../entities/usuario";
+import categoryService from "./category.service";
 
 const projectRepository = AppDataSource.getRepository(Proyecto);
 const userRepository = AppDataSource.getRepository(Usuario);
@@ -9,7 +10,7 @@ const userRepository = AppDataSource.getRepository(Usuario);
 const getAllProjectsService = async () =>{
     try {
         
-        const projects: Proyecto[] = await projectRepository.find();
+        const projects: Proyecto[] = await projectRepository.find({relations:["categoria"]});
         return projects
     } catch (error) {
         throw error;
@@ -25,7 +26,9 @@ const postNewProjectService = async (projectData: ProjectDto) =>{
     
     await findCompanyById(projectData.id);
 
-    try {        
+    try {
+        const category = await categoryService.postNewCategory(projectData.categoria);
+        
         const project = await projectRepository.create({
             titulo: projectData.titulo,
             descripcion: projectData.descripcion,
@@ -34,6 +37,7 @@ const postNewProjectService = async (projectData: ProjectDto) =>{
             // presupuesto: 500,
             modalidad: projectData.modalidad,
             estado: true,        
+            categoria: category
         })
         const projectCreated = await projectRepository.save(project);
         return projectCreated;

@@ -5,7 +5,7 @@ interface ProjectDto {
     descripcion: string;
     requisitos: string;
     habilidades: string[];
-    categorias: string[];
+    categoria: string;
     modalidad: string;
     estado: string;
   }
