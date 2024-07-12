@@ -72,6 +72,7 @@ const postNewProjectService = async (id: string, projectData: ProjectDto) =>{
 const editProjectByIdService = async (id: string, projectData: ProjectUpdateDto) =>{
 
     await findCompanyById(id);
+    await getProjectByIdService(projectData.projectId);
 
     try {
         //agrego categoria
