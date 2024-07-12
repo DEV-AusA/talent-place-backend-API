@@ -60,7 +60,8 @@ const postNewProjectService = async (id: string, projectData: ProjectDto) =>{
             categoria: category,
             habilidades: habilities
         })
-        const projectCreated = await projectRepository.save(project);
+        const newProject = await projectRepository.save(project);
+        const projectCreated = await getProjectByIdService(newProject.id);
         return projectCreated;
         
     } catch (error) {
