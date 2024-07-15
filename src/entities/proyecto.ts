@@ -42,6 +42,9 @@ export default class Proyecto {
     })
     estado: boolean;
 
+    @Column({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
+    fechaCreacion: Date;
+
     @ManyToMany(() => Habilidad, (habilidad) => habilidad.proyecto, { eager: true })
     habilidades: Habilidad[];
 
