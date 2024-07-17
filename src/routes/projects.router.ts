@@ -22,21 +22,21 @@ projectRouter.get("/:id",
 projectRouter.post("/:id",
     jwtVerifyMiddleware.jwtVerify,
     jwtIdMatchVerifyMiddleware.jwtIdMatchVerify,
-    jwtRolVerify(['empresa']),
+    jwtRolVerify(['empresa', 'admin']),
     projectController.postNewProject
 );
 
 projectRouter.put("/:id",
     jwtVerifyMiddleware.jwtVerify,
     jwtIdMatchVerifyMiddleware.jwtIdMatchVerify,
-    jwtRolVerify(['empresa']),
+    jwtRolVerify(['empresa', 'admin']),
     projectController.editProjectById
 );
 
 projectRouter.delete("/:id",
     jwtVerifyMiddleware.jwtVerify,
     jwtIdMatchVerifyMiddleware.jwtIdMatchVerify,
-    jwtRolVerify(['empresa']),
+    jwtRolVerify(['empresa', 'admin']),
     projectController.deleteProjectById
 );
 
