@@ -1,7 +1,7 @@
 import IProject from "../interfaces/IProject.interface";
 
 //projects preload
-export const preloadUsers: IProject[] = [
+export const preloadProjects: IProject[] = [
     {
         titulo: "Desarrollo de una Aplicación de Gestión de Proyectos",
         descripcion: "Una empresa de consultoría en gestión de proyectos busca un desarrollador freelance para crear una aplicación de gestión integral de proyectos. El proyecto incluye la creación de herramientas para planificación, seguimiento de tareas, gestión de recursos y generación de informes.",
