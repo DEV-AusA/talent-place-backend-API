@@ -17,47 +17,49 @@ export const preloadUsersData = async () => {
     await AppDataSource.manager.transaction(async (transactionalEntityManager) => {
 
         const users = await UserRepository.find();
+        
+        if(users.length)
+            return console.log(`No se hizo precarga de usuarios porque ya hay ${users.length} usuarios cargados`);            
+
+        // users
+        for await(const user of preloadUsers) {
+            const newUser = await UserRepository.create({
+                ...user,
+                contrasenia: await bcrypt.hash(user.contrasenia, 10)
+            });
+            await transactionalEntityManager.save(newUser);
+        }
+
+        console.log("Precarga de Usuarios del Preload realizada con éxito");        
+
+    })
+
+    await AppDataSource.manager.transaction(async (transactionalEntityManager) => {
+
         const projects = await ProjectRepository.find();
-        
-        if(users.length) {
-            console.log(`No se hizo precarga de usuarios porque ya hay ${users.length} usuarios cargados`);            
-        }
-        else {
-            // users
-            for await(const user of preloadUsers) {
-                const newUser = await UserRepository.create({
-                    ...user,
-                    contrasenia: await bcrypt.hash(user.contrasenia, 10)
-                });
-                await transactionalEntityManager.save(newUser);
-            }
-            console.log("Precarga de Usuarios del Preload realizada con éxito");        
-        }
-
         //user con rol empresa
-        const userCompany = await UserRepository.findOneBy({email: "nicoausa@gmail.com"})
+        const userCompany = await UserRepository.findOneBy({email: "nicoausa@gmail.com"});        
         
-        if (projects.length > 5) {
-            console.log(`No se hizo precarga de proyectos porque ya hay ${projects.length} proyectos cargados`);            
-        }
-        else {
-            //proyectos
-            for await(const project of preloadProjects) {
-    
-                //agrego categoria
-                const category: Categoria = await categoryService.postNewCategory(project.categoria);
-                //agrego habilidades
-                const habilities: Habilidad[] = await habilityService.postNewHability(project.habilidades);
-                const newProject = await ProjectRepository.create({
-                    ...project,
-                    empresaId: userCompany.id,
-                    categoria: category,
-                    habilidades: habilities
-                });
-                await transactionalEntityManager.save(newProject);
-            }
-            console.log("Precarga de Proyectos del Preload realizada con éxito");        
+        if (projects.length > 5)
+            return console.log(`No se hizo precarga de proyectos porque ya hay ${projects.length} proyectos cargados`);            
+        
+        //proyectos
+        for await(const project of preloadProjects) {
+
+            //agrego categoria
+            const category: Categoria = await categoryService.postNewCategory(project.categoria);
+            //agrego habilidades
+            const habilities: Habilidad[] = await habilityService.postNewHability(project.habilidades);
+            const newProject = await ProjectRepository.create({
+                ...project,
+                empresaId: userCompany.id,
+                categoria: category,
+                habilidades: habilities
+            });
+            await transactionalEntityManager.save(newProject);
         }
 
+        console.log("Precarga de Proyectos del Preload realizada con éxito");        
+        
     })
 }
