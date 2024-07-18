@@ -12,9 +12,9 @@ projectRouter.get("/",
 );
 
 projectRouter.get("/:id",
-    // jwtVerifyMiddleware.jwtVerify,
-    // jwtIdMatchVerifyMiddleware.jwtIdMatchVerify,
-    // jwtRolVerify(['empresa', 'junior', 'admin']),
+    jwtVerifyMiddleware.jwtVerify,
+    jwtIdMatchVerifyMiddleware.jwtIdMatchVerify,
+    jwtRolVerify(['empresa', 'junior', 'admin']),
     projectController.getProyectById
 );
 

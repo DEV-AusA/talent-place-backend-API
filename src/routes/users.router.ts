@@ -37,4 +37,8 @@ usersRouter.put("/me",
     userController.editUserData
 );
 
+usersRouter.get("/me/habilities",
+    userController.getAllUserHabilities
+);
+
 export default usersRouter
