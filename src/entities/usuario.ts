@@ -10,14 +10,23 @@ import { ulid } from "ulid";
 })
 export default class Usuario {
 
-    @PrimaryColumn({})
+    @PrimaryColumn()
     id: string;
 
     @Column()
     nombre: string;
 
     @Column()
+    apellido: string;
+
+    @Column()
     email: string;
+
+    @Column()
+    telefono: string;
+
+    @Column()
+    pais: string;
 
     @Column()
     contrasenia: string;

@@ -5,6 +5,7 @@ import IQrCodeData from "../interfaces/iQrCodeData.interface";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import Usuario from "../entities/usuario";
+import UserDto from "../dto/user.dto";
 
 const userRepository = AppDataSource.getRepository(Usuario);
 
@@ -74,38 +75,24 @@ const updateUserSecret2Fa = async (user: Usuario, secret: string) => {
     }
 }
 
-const createUser = async (nombre: string, contrasenia: string, email: string): Promise<Usuario> => {
+const createUser = async (userData: UserDto )=> {
     try {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        throw { message: 'Formato de correo electrónico no válido', code: 400 };
-      }
 
-    // Validar fortaleza de la contraseña
-    const validatePasswordStrength = (contrasenia: string): boolean => {
-      const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
-      return regex.test(contrasenia);
-    };
-
-    if (!validatePasswordStrength(contrasenia)) {
-      throw { message: 'La contraseña debe tener al menos 8 caracteres, una letra mayúscula y un número', code: 400 };
-    }
-      const existingUser = await userRepository.findOne({ where: { email } });
+      const existingUser = await userRepository.findOne({ where: { email: userData.email } });
       if (existingUser) {
         throw { message: 'Ya existe un usuario con este correo electrónico', code: 409 };
       }
 
-      const hashedPassword = await bcrypt.hash(contrasenia, 10);
+      const hashedPassword = await bcrypt.hash(userData.contrasenia, 5);
   
       const newUser = userRepository.create({
-        nombre,
+        ...userData,
         contrasenia: hashedPassword,
-        email,
       });
   
       await userRepository.save(newUser);
-  
-      return newUser;
+      
+      return { message: 'Usuario creado exitosamente'};
     } catch (error) {
       throw error;
     }
@@ -113,10 +100,6 @@ const createUser = async (nombre: string, contrasenia: string, email: string): P
   
   const authLogin = async (email: string , contrasenia: string ) => {
     try {
-
-      if (!email || !contrasenia) {
-        throw { message: 'Correo electrónico y contraseña son obligatorios', code: 400 };
-      }
       
       const user = await userRepository.findOne({ where: { email } });
       if (!user) {
@@ -131,7 +114,7 @@ const createUser = async (nombre: string, contrasenia: string, email: string): P
       const token = jwt.sign(
         { userId: user.id, email: user.email, tipo: user.tipo },
         process.env.JWT_SECRET,
-        { expiresIn: '48h' }
+        { expiresIn: '72h' }
       );
 
       user.updatedAt = new Date();
@@ -142,12 +125,14 @@ const createUser = async (nombre: string, contrasenia: string, email: string): P
         refreshToken: token,
         user: {
           id: user.id,
+          apellido: user.apellido,
           nombre: user.nombre,
-          email: user.email,
-          tipo: user.tipo
+          telefono: user.telefono,
+          pais: user.pais,
+          tipo: user.tipo,
+          email: user.email
         }
       });
-  
     } catch (error) {
       throw error;
   } 
