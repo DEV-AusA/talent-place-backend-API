@@ -40,4 +40,11 @@ projectRouter.delete("/:id",
     projectController.deleteProjectById
 );
 
+projectRouter.get("/user/:id",
+    jwtVerifyMiddleware.jwtVerify,
+    jwtIdMatchVerifyMiddleware.jwtIdMatchVerify,
+    jwtRolVerify(['empresa', 'admin']),
+    projectController.getAllProjectsByUserId
+);
+
 export default projectRouter
