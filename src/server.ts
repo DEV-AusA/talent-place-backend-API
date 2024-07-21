@@ -9,7 +9,7 @@ const server = express();
 server.use(cors());
 server.use(express.json());
 server.use(loggerGlobal);
-server.use(limiterGlobal);
+// server.use(limiterGlobal);
 server.use(router);
 
 // manejo los errores y los muestra en .json
