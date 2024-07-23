@@ -34,7 +34,7 @@ usersRouter.get("/me/:id",
     userController.getUserProfile
 );
 
-usersRouter.put("/me",
+usersRouter.put("/me/:id",
     jwtVerifyMiddleware.jwtVerify,
     jwtIdMatchVerifyMiddleware.jwtIdMatchVerify,
     jwtRolVerify(["admin", "junior"]),
