@@ -30,7 +30,7 @@ const appsRouter: Router = Router();
  *       404:
  *         description: No se encontraron aplicaciones para el usuario.
  */
-appsRouter.get("/", jwtVerifyMiddleware.jwtVerify, appsController.getAllApplicationsUserValidate)
+appsRouter.get("/:id", jwtVerifyMiddleware.jwtVerify, appsController.getAllApplicationsUserValidate)
 
 
 /**
@@ -66,6 +66,6 @@ appsRouter.get("/", jwtVerifyMiddleware.jwtVerify, appsController.getAllApplicat
  *       404:
  *         description: No se encontraron aplicaciones para el usuario o el proyecto no existe.
  */
-appsRouter.post("/", jwtVerifyMiddleware.jwtVerify, appsController.postApplyToProject)
+appsRouter.post("/:id", jwtVerifyMiddleware.jwtVerify, appsController.postApplyToProject)
 
 export default appsRouter
