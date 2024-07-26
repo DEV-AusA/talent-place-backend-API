@@ -1,16 +1,20 @@
 import { Router } from "express";
 import appsController from "../controllers/apps.controller";
 import jwtVerifyMiddleware from "../middlewares/jwtVerify.middleware";
+import jwtIdMatchVerifyMiddleware from "../middlewares/jwtIdMatchVerify.middleware";
+import jwtRolVerify from "../middlewares/jwtRolVerify.middleware";
 
 const appsRouter: Router = Router();
 
 /**
  * @swagger
- * /applications/{userId}:
+ * /applications/:{userId}:
  *   get:
  *     summary: Obtiene una lista de aplicaciones del usuario autenticado
  *     tags:
  *       - Aplicación
+ *     security:
+ *       - Bearer: []
  *     parameters:
  *       - in: path
  *         name: userId
@@ -30,17 +34,26 @@ const appsRouter: Router = Router();
  *       404:
  *         description: No se encontraron aplicaciones para el usuario.
  */
-appsRouter.get("/:id", jwtVerifyMiddleware.jwtVerify, appsController.getAllApplicationsUserValidate)
+appsRouter.get("/:id",
+    jwtVerifyMiddleware.jwtVerify,
+    jwtIdMatchVerifyMiddleware.jwtIdMatchVerify,
+    jwtRolVerify(["admin", "junior"]),
+    appsController.getAllApplicationsUserValidate
+)
 
 
 /**
  * @swagger
- * /applications/{userId}:
+ * /applications/:{userId}:
  *   post:
  *     summary: Cargar la aplicación a un proyecto del usuario
  *     tags:
  *       - Aplicación
  *     parameters:
+ *       - in: path
+ *         name: userId
+ *         description: ID del usuario autenticado
+ *         required: true
  *       - in: body
  *         name: application
  *         description: Datos de la aplicación
@@ -66,6 +79,12 @@ appsRouter.get("/:id", jwtVerifyMiddleware.jwtVerify, appsController.getAllAppli
  *       404:
  *         description: No se encontraron aplicaciones para el usuario o el proyecto no existe.
  */
-appsRouter.post("/:id", jwtVerifyMiddleware.jwtVerify, appsController.postApplyToProject)
+//appsRouter.post("/", jwtVerifyMiddleware.jwtVerify, appsController.postApplyToProject)
+appsRouter.post("/:id",
+    jwtVerifyMiddleware.jwtVerify,
+    jwtIdMatchVerifyMiddleware.jwtIdMatchVerify,
+    jwtRolVerify(["admin", "junior"]),
+    appsController.postApplyToProject
+);
 
 export default appsRouter
