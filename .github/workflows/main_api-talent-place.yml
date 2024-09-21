@@ -72,5 +72,5 @@ jobs:
           app-name: 'api-talent-place'
           slot-name: 'Production'
           package: .
-          clean: false  # Desactiva el uso de Oryx
+          clean: true  # Desactiva el uso de Oryx
           
