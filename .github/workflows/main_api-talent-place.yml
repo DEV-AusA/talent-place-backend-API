@@ -63,10 +63,15 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_DB4DF38A999C46CA941AE64469B99462 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_2EAD34550AA5467691AD82F06476892B }}
 
+      - name: Clean Azure Web App content
+        run: |
+          az webapp ssh --name api-talent-place --resource-group resource-group-pi --command "rm -rf /home/site/wwwroot/*"
+
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
+          # nombre del app service
           app-name: 'api-talent-place'
           slot-name: 'Production'
           package: .
