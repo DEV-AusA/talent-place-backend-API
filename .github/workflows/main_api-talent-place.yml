@@ -56,6 +56,9 @@ jobs:
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
+
+      - name: Remove release.zip after unzip
+        run: rm release.zip
       
       - name: Login to Azure
         uses: azure/login@v2
@@ -72,5 +75,5 @@ jobs:
           app-name: 'api-talent-place'
           slot-name: 'Production'
           package: .
-          clean: true  # Desactiva el uso de Oryx
+          clean: true  # borra el directorio destino
           
