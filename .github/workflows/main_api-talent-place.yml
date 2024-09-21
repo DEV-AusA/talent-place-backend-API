@@ -69,11 +69,11 @@ jobs:
       #     curl -X POST -u ${{ secrets.KUDU_USERNAME }}:${{ secrets.KUDU_PASSWORD }} https://api-talent-place.scm.azurewebsites.net/api/command \
       #     -d "{ 'command': 'rm -rf /home/site/wwwroot/*' }"
 
-      - name: Clean Azure Web App content using Kudu
-        run: |
-          curl -X POST -u ${{ secrets.KUDU_USERNAME }}:${{ secrets.KUDU_PASSWORD }} https://api-talent-place.scm.azurewebsites.net/api/command \
-          -H "Content-Type: application/json" \
-          -d '{ "command": "bash -c \"rm -rf /home/site/wwwroot/*\"" }'
+      # - name: Clean Azure Web App content using Kudu
+      #   run: |
+      #     curl -X POST -u ${{ secrets.KUDU_USERNAME }}:${{ secrets.KUDU_PASSWORD }} https://api-talent-place.scm.azurewebsites.net/api/command \
+      #     -H "Content-Type: application/json" \
+      #     -d '{ "command": "bash -c \"rm -rf /home/site/wwwroot/*\"" }'
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
@@ -83,4 +83,12 @@ jobs:
           app-name: 'api-talent-place'
           slot-name: 'Production'
           package: .
+
+      - task: AzureRmWebAppDeployment@4
+        inputs:
+          azureSubscription: 'Azure subscription 1' # Cambia esto por el nombre de tu suscripción en Azure
+          appType: 'webApp'
+          appName: 'api-talent-place' # Nombre de tu aplicación web en Azure
+          package: '$(System.DefaultWorkingDirectory)/release.zip' # Ruta al artefacto empaquetado
+          RemoveAdditionalFilesFlag: true # Limpia los archivos adicionales
           
