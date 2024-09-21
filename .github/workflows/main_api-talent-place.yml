@@ -72,7 +72,5 @@ jobs:
           app-name: 'api-talent-place'
           slot-name: 'Production'
           package: .
-          enable-oryx-build: false  # Desactiva el uso de Oryx
-          enable-ftp: false  # Asegura que el despliegue se haga vía GitHub Actions
-          remove-files: true  # Limpia los archivos existentes en wwwroot antes de copiar nuevos
+          clean: false  # Desactiva el uso de Oryx
           
