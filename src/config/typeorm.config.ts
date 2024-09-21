@@ -24,4 +24,12 @@ export const AppDataSource = new DataSource({
     entities: [ Usuario , Aplicacion , Comentario , Pago , Proyecto, Categoria, Habilidad ],
     subscribers: [],
     migrations: [],
+    ssl: true,
+    cache: true,
+    maxQueryExecutionTime: 1000,
+    extra: {
+      ssl: {
+        rejectUnauthorized: false,
+      },
+    },
 })
