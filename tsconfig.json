@@ -7,7 +7,7 @@
     "esModuleInterop": true, // Habilita la interoperabilidad de módulos comunes
     "skipLibCheck": true, // Omitir verificación de tipos en archivos de definición
     "forceConsistentCasingInFileNames": true, // Fuerza el uso consistente de mayúsculas y minúsculas en los nombres de archivo ****************
-    "outDir": "./dist", // Directorio de salida para los archivos compilados
+    "outDir": "./api", // Directorio de salida para los archivos compilados
     "rootDir": "./src", // Directorio raíz para los archivos fuente
     "experimentalDecorators": true, // Habilita el soporte para decoradores
     "emitDecoratorMetadata": true,  // Habilita la emisión de metadatos de decoradores
