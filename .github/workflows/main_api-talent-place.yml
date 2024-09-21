@@ -72,12 +72,7 @@ jobs:
           app-name: 'api-talent-place'
           slot-name: 'Production'
           package: .
-
-      - task: AzureRmWebAppDeployment@4
-        inputs:
-          azureSubscription: 'Azure subscription 1' # Cambia esto por el nombre de tu suscripción en Azure
-          appType: 'webApp'
-          appName: 'api-talent-place' # Nombre de tu aplicación web en Azure
-          package: '$(System.DefaultWorkingDirectory)/release.zip' # Ruta al artefacto empaquetado
-          RemoveAdditionalFilesFlag: true # Limpia los archivos adicionales
+          enable-oryx-build: false  # Desactiva el uso de Oryx
+          enable-ftp: false  # Asegura que el despliegue se haga vía GitHub Actions
+          remove-files: true  # Limpia los archivos existentes en wwwroot antes de copiar nuevos
           
