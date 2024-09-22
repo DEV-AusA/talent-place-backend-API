@@ -4,12 +4,17 @@ const swaggerUi = require("swagger-ui-express")
 
 const options = {
     definition: {
+        swagger: "2.0", // Indica que estás usando Swagger 2.0
         info: {
             title: 'Talent Place Igwroker',
             version: '1.0.0'
-        }
+        },
+        host: process.env.SWAGGER_ENTORNO,
+        // basePath: '/v1', // Base path de tu API
+        basePath: '', // Base path de tu API
+        schemes: ['https', 'http'], // Protocolo(s) que soporta
     },
-    apis: ["src/routes/users.router.ts", "src/routes/auth.router.ts", "src/routes/projects.router.ts", "src/routes/apps.router.ts"]
+    apis: ["./src/routes/*{.ts,.js}"]
 }
 
 

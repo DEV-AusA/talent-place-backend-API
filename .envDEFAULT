@@ -10,3 +10,6 @@ SPEAKEASY_NAME=
 
 # JWT Secret
 JWT_SECRET=
+
+# Swagger variable de consulta de la API - para seleccionar HTTP ó HTTPS segun sea el caso
+SWAGGER_ENTORNO=
