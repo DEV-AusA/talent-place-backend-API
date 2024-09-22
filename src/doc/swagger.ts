@@ -13,7 +13,8 @@ const options = {
         swagger: "2.0", // Indica que estás usando Swagger 2.0
         info: {
             title: 'Talent Place Igwroker',
-            version: '1.0.0'
+            version: '1.0.0',
+            description: 'API para gestionar usuarios y talentos en Talent Place.', // Descripción del proyecto
         },
         host: process.env.SWAGGER_ENTORNO,
         // basePath: '/v1', // Base path de tu API
@@ -28,7 +29,6 @@ const options = {
 const swaggerSpec = swaggerJSDoc(options);
 
 const swaggerDocs = (app, _port) =>{
-    console.log(swaggerSpec);    
     app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
     app.get('/api/v1/docs.json', (_req, res)=>{
         res.setHeader('Content-Type', 'application/json');
