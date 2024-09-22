@@ -15,7 +15,7 @@ const options = {
         schemes: ['https', 'http'], // Protocolo(s) que soporta
     },
     // apis: [process.env.SWAGGER_ENTORNO === 'api-talent-place.azurewebsites.net' ? './dist/routes/*{.ts,.js}' : './src/routes/*{.ts,.js}']
-    apis: ["./dist/routes/*{.ts,.js}"]
+    apis: ["./dist/routes/*.js}"]
 }
 
 
