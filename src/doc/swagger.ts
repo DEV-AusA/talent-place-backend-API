@@ -2,6 +2,12 @@
 const swaggerJSDoc = require("swagger-jsdoc")
 const swaggerUi = require("swagger-ui-express")
 
+const isProduction = process.env.SWAGGER_ENTORNO === 'api-talent-place.azurewebsites.net';
+
+const routesPath = isProduction
+    ? './dist/routes/*.js'  // para produccion
+    : './src/routes/*.ts';  // para desarrollo
+
 const options = {
     definition: {
         swagger: "2.0", // Indica que estás usando Swagger 2.0
@@ -14,7 +20,7 @@ const options = {
         basePath: '', // Base path de tu API
         schemes: ['https', 'http'], // Protocolo(s) que soporta
     },
-    apis: [process.env.SWAGGER_ENTORNO === 'api-talent-place.azurewebsites.net' ? './dist/routes/*.js' : './src/routes/*.ts}']
+    apis: [routesPath],
 }
 
 
