@@ -14,8 +14,7 @@ const options = {
         basePath: '', // Base path de tu API
         schemes: ['https', 'http'], // Protocolo(s) que soporta
     },
-    // apis: [process.env.SWAGGER_ENTORNO === 'api-talent-place.azurewebsites.net' ? './dist/routes/*{.ts,.js}' : './src/routes/*{.ts,.js}']
-    apis: ["./dist/routes/*.js"]
+    apis: [process.env.SWAGGER_ENTORNO === 'api-talent-place.azurewebsites.net' ? './dist/routes/*.js' : './src/routes/*.ts}']
 }
 
 
@@ -23,6 +22,7 @@ const options = {
 const swaggerSpec = swaggerJSDoc(options);
 
 const swaggerDocs = (app, _port) =>{
+    console.log(swaggerSpec);    
     app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
     app.get('/api/v1/docs.json', (_req, res)=>{
         res.setHeader('Content-Type', 'application/json');

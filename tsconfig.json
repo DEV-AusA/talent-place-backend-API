@@ -13,7 +13,7 @@
     "emitDecoratorMetadata": true,  // Habilita la emisión de metadatos de decoradores
 
     "declaration": true,
-    "removeComments": true,
+    "removeComments": false,  // dejar en false para Swagger
     "allowSyntheticDefaultImports": true,
     "lib": ["ES6"],                                        /* Specify a set of bundled library declaration files that describe the target runtime environment. */
     "sourceMap": true,
