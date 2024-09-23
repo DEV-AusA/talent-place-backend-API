@@ -14,7 +14,7 @@ const usersRouter: Router = Router();
  *     tags:
  *       - Usuarios
  *     security:
- *       - bearerAuth: []
+ *       - BearerAuth: []
  *     responses:
  *       200:
  *         description: Detalles de los usuarios obtenidos correctamente.
